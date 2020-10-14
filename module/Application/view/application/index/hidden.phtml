@@ -1,0 +1,20 @@
+<p>
+    I am thinking a number from 1 to 10.<br/>
+    You must guess what it is in three tries.<br/>
+</p>
+<form id="guessForm" method="POST">
+    Enter a guess <input type="number" name="guess" id="guess" min="1" max="10">
+    <input type="hidden" name="numtobeguessed" value="<?php echo $this->numtobeguessed > 0 ? $this->numtobeguessed : ""; ?>" >
+    <input type="hidden" name="count" value="<?php echo $this->count; ?>" >
+    <input type="submit" value="Guess it" id="guessButton"/>
+    <p style="color:red"><?php echo $this->guessError;?></p>
+    <p><?php echo $this->message;?></p>
+    <p><?php echo $this->statusMessage;?></p>
+</form>
+<script>
+    var status = '<?php echo $this->statusMessage;?>';
+    if (status.length > 0) {
+        $("#guess").prop("disabled", true);//disable input field if win/fails
+        $("#guessButton").prop("disabled", true);//disable submit button if win/fails
+    }
+</script>
